@@ -1,0 +1,11 @@
+bf4015b65869ce1d0fd1d7ee0412a80f *DESCRIPTION
+813261bc9101846dcb52c5121b5278a3 *NAMESPACE
+06970db729048dc58cea07561b152a5f *R/tmbstan.R
+0b645537948f134f9e023b228829ac94 *R/zzz.R
+a891825333b362a00bbfed727fd88be7 *inst/model.hpp
+9bb613e0e5ed1a63174db885c0f3304f *man/tmbstan.Rd
+8ee427c7aa766508c7a0f9c659aba25f *src/Makevars
+31cfbafca6ed35f40155a154abd3c00d *src/Modules.cpp
+ef4692a8cc9139c6145d78131b5ac57b *src/include/custom_func.hpp
+a891825333b362a00bbfed727fd88be7 *src/include/model.hpp
+4caf024deddd39af7fba9a7ec544b04c *src/init.cpp
