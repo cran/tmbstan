@@ -269,6 +269,9 @@ tmbstan <- function(obj,
         ## User specified initializer list - sanitize
         if (is.numeric(init))
             init <- list(init)
+        ## E.g. init="last.par.best"
+        if (is.character(init) && any(init %in% specialChars))
+            init <- as.list(init)
         if (is.list(init))
             init <- lapply(init, initSanitizer)
         if (is.list(init) && ( length(init) != chains ) ) {
@@ -279,5 +282,7 @@ tmbstan <- function(obj,
         args$init <- init
     }
 
-    do.call("sampling", args)
+    ans <- do.call("sampling", args)
+    ans@model_name <- obj$env$DLL
+    ans
 }
