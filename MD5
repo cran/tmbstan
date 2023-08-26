@@ -1,4 +1,4 @@
-c10b00b756694bce50ba9952c4df5748 *DESCRIPTION
+fb504bb952d1c7c82f6128f04242fc07 *DESCRIPTION
 813261bc9101846dcb52c5121b5278a3 *NAMESPACE
 5ebbacf8f909d474a8a9cbd53a9864f1 *NEWS
 b553716635cddb547bca26f4563673f6 *R/tmbstan.R
@@ -8,11 +8,11 @@ ccb3737aaf76e7ed0fb1c2558da2b1ad *configure
 a5b02bf900c7a43d3716d66f5d297f5a *inst/CITATION
 34de6b981cec26aeae84049726d17786 *inst/model.hpp
 7cb66633c0657e83b52727a13cc118c4 *inst/model.stan
-d6876ab5ca7d3cfc7135656f04b4836f *inst/model226.stan
+ab687b14a079f2ca9ed2dd51d0b8db55 *inst/model226.stan
 b6f883d4d8a1c5a36ecd5a9e1521166b *man/tmbstan.Rd
-8eb94ab0ca38362bef9a1ae171d63fad *src/Makevars
+564c40d0e86bb1e58d039ff240e97b9f *src/Makevars
 31cfbafca6ed35f40155a154abd3c00d *src/Modules.cpp
 ef4692a8cc9139c6145d78131b5ac57b *src/include/custom_func.hpp
 34de6b981cec26aeae84049726d17786 *src/include/model.hpp
 4caf024deddd39af7fba9a7ec544b04c *src/init.cpp
-af959bf0eca8fd55cbb8b3bd43918af3 *tools/autogen.R
+5dafff59edf32aa9d7cd041cd00cd15e *tools/autogen.R
