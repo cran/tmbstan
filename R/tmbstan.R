@@ -55,6 +55,12 @@ setMethod("sampling", "tmbstanmodel",
               shortpar_len <- table(factor(parnames, levels=unique(parnames)))
               shortpar_nam <- names(shortpar_len)
               env <- environment()
+              if ( length(object@DLL) > 0 ) { ## CCallable requested
+                  if (TMB:::isNullPointer(object@ptr)) {
+                      try(fn()) ## Update pointers (might be Nil on Windows parallel node)
+                      object@ptr <- environment(fn)$ADFun$ptr
+                  }
+              }
               .Call("set_pointers", x, R_callf, R_callg, env,
                     object@ptr, object@DLL, PACKAGE="tmbstan")
               ## ===============================================================
@@ -67,7 +73,10 @@ setMethod("sampling", "tmbstanmodel",
               ## (1)
               oldprof <- Sys.getenv("R_PROFILE")
               tmpfile <- tempfile()
-              cat("library(tmbstan)\n", file=tmpfile)
+              cat(c(".libPaths(c(",
+                    toString(dQuote(.libPaths(), q = FALSE)),
+                    "))\n"), file=tmpfile)
+              cat("library(tmbstan)\n", file=tmpfile, append=TRUE)
               ## (2)
               cat(paste0("dyn.load('",
                          unclass(getLoadedDLLs()[[environment(fn)$DLL]])$path,
@@ -146,20 +155,22 @@ setMethod("sampling", "tmbstanmodel",
 ##' }
 ##' @importFrom TMB runExample
 ##' @examples
-##' TMB::runExample("simple")
-##' fit <- tmbstan(obj, chains=1)
-##' class(fit)  ## "stanfit"
-##'
-##' ## The available methods are
-##' methods(class="stanfit")
-##'
+##' if (requireNamespace("RTMB")) {
+##'    func <- function(parms) {
+##'       -sum(RTMB::dnorm(rivers, parms$mu, exp(parms$logsd), log=TRUE))
+##'    }
+##'    obj <- RTMB::MakeADFun(func, parameters=list(mu=0, logsd=0))
+##'    fit <- tmbstan(obj, chains=1)
+##'    class(fit)  ## "stanfit"
+##'    ## The available methods are
+##'    methods(class="stanfit")
+##'    ## Trace plot
+##'    traceplot(fit, pars=names(obj$par), inc_warmup=TRUE)
+##' }
 ##' \dontrun{
 ##' ## Pairs plot
 ##' pairs(fit, pars=names(obj$par))
 ##' }
-##'
-##' ## Trace plot
-##' traceplot(fit, pars=names(obj$par), inc_warmup=TRUE)
 tmbstan <- function(obj,
                     ...,
                     lower=numeric(0), upper=numeric(0),
