@@ -1,8 +1,8 @@
 Package: tmbstan
 Type: Package
 Title: MCMC Sampling from 'TMB' Model Object using 'Stan'
-Version: 1.1.0
-Date: 2026-03-20
+Version: 1.2.0
+Date: 2026-07-23
 Authors@R: person(given = "Kasper",
                   family = "Kristensen",
                   role = c("aut", "cre"),
@@ -12,13 +12,14 @@ Description: Enables all 'rstan' functionality for a 'TMB' model object, in part
 Imports: methods, Rcpp, TMB
 Depends: R (>= 4.5.0), rstan
 LinkingTo: StanHeaders, rstan, BH, Rcpp, RcppEigen, TMB, RcppParallel
-Suggests: RTMB
+VignetteBuilder: knitr, rmarkdown
+Suggests: knitr, rmarkdown, RTMB
 License: GPL (>= 3)
 BugReports: https://github.com/kaskr/tmbstan/issues
 NeedsCompilation: yes
 SystemRequirements: GNU make
 RoxygenNote: 7.3.3
-Packaged: 2026-03-20 13:55:28 UTC; kaskr
+Packaged: 2026-07-23 11:33:55 UTC; kaskr
 Author: Kasper Kristensen [aut, cre]
 Repository: CRAN
-Date/Publication: 2026-03-20 14:40:02 UTC
+Date/Publication: 2026-07-28 10:10:02 UTC
