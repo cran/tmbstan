@@ -12,7 +12,7 @@
 
 <meta name="author" content="Kasper Kristensen" />
 
-<meta name="date" content="2026-07-23" />
+<meta name="date" content="2026-09-11" />
 
 <title>Sampling from TMB models using Stan</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Sampling from TMB models using Stan</h1>
 <h4 class="author">Kasper Kristensen</h4>
-<h4 class="date">2026-07-23</h4>
+<h4 class="date">2026-09-11</h4>
 
 
 <div id="TOC">
@@ -397,8 +397,8 @@ redundant here):</p>
 <pre><code>## 
 ## SAMPLING FOR MODEL &#39;tmb_generic&#39; NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 4.7e-05 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.47 seconds.
+## Chain 1: Gradient evaluation took 3.5e-05 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.35 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -415,9 +415,9 @@ redundant here):</p>
 ## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 1.71 seconds (Warm-up)
-## Chain 1:                0.902 seconds (Sampling)
-## Chain 1:                2.612 seconds (Total)
+## Chain 1:  Elapsed Time: 0.798 seconds (Warm-up)
+## Chain 1:                0.76 seconds (Sampling)
+## Chain 1:                1.558 seconds (Total)
 ## Chain 1:</code></pre>
 </div>
 <div id="improving-sampling-speed" class="section level1">
@@ -440,15 +440,15 @@ tape pass:</p>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="do">## speedup ?</span></span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="fu">c</span>(<span class="at">speedup =</span> <span class="fu">unname</span>(t <span class="sc">/</span> t_vect))</span></code></pre></div>
 <pre><code>##  speedup 
-## 3.177701</code></pre>
+## 2.269852</code></pre>
 <p>In this case vectorization appears to be beneficial. Let’s compare
 the MCMC runs:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">system.time</span>(out <span class="ot">&lt;-</span> <span class="fu">tmbstan</span>(obj, <span class="at">chains=</span><span class="dv">1</span>, <span class="at">seed=</span><span class="dv">1</span>, <span class="at">refresh =</span> <span class="dv">0</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   2.638   0.000   2.639</code></pre>
+##   1.800   0.001   1.801</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">system.time</span>(out_vect <span class="ot">&lt;-</span> <span class="fu">tmbstan</span>(obj_vect, <span class="at">chains=</span><span class="dv">1</span>, <span class="at">seed=</span><span class="dv">1</span>, <span class="at">refresh =</span> <span class="dv">0</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.979   0.001   0.981</code></pre>
+##   1.136   0.001   1.138</code></pre>
 </div>
 
 
